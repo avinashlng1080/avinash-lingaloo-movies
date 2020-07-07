@@ -1,4 +1,4 @@
-import type Movie from '../types/Movie';
+import type Movie from '@types/Movie';
 
 const Movies: Array<Movie> = [
     {
