@@ -24,11 +24,11 @@ const Splash = () => {
     const scale = new Animated.Value(1);
     const resetNavigation = useCallback(() => {
         Animated.timing(scale, {
-            toValue: 1000,
+            toValue: 2000,
             duration: 200,
             useNativeDriver: true,
         }).start(() => {
-            const movies: Array<Movie> = generateMovies(20, 5);
+            const movies: Array<Movie> = generateMovies(21, 5);
             navigation.reset({
                 index: 0,
                 routes: [{name: 'Start', params: {movies}}],
