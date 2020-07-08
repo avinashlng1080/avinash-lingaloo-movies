@@ -3,6 +3,10 @@ import LottieView from 'lottie-react-native';
 import React, {useRef, useCallback} from 'react';
 import {Animated, StatusBar, StyleSheet} from 'react-native';
 
+import generateMovies from '@utils/generate';
+
+import type Movie from '@app/types/Movie';
+
 const style = StyleSheet.create({
     container: {
         flex: 1,
@@ -24,9 +28,10 @@ const Splash = () => {
             duration: 200,
             useNativeDriver: true,
         }).start(() => {
+            const movies: Array<Movie> = generateMovies(20, 5);
             navigation.reset({
                 index: 0,
-                routes: [{name: 'Start'}],
+                routes: [{name: 'Start', params: {movies}}],
             });
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps

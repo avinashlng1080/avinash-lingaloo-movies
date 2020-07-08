@@ -1,122 +1,62 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import {RouteProp, useRoute} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {useValue} from 'react-native-redash';
 
-import React from 'react';
-import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
-    View,
-    Text,
-    StatusBar,
-} from 'react-native';
+import Modal from '@components/Modal';
+import Movie from '@components/Movie';
 
-import {
-    Header,
-    LearnMoreLinks,
-    Colors,
-    DebugInstructions,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import type MovieType from '@app/types/Movie';
+import type PositionType from '@app/types/Position';
 
-declare const global: {HermesInternal: null | {}};
+interface ModalState {
+    movie: MovieType;
+    position: PositionType;
+}
 
-const App = () => {
+type StartParamList = {
+    Start: {
+        movies: Array<MovieType>;
+    };
+};
+
+type StartRoute = RouteProp<StartParamList, 'Start'>;
+
+const Start = () => {
+    const route = useRoute<StartRoute>();
+    const {movies} = route.params;
+    const activeMovieId = useValue<number>(-1);
+    const [modal, setModal] = useState<ModalState | null>(null);
+
+    const open = (index: number, movie: MovieType, position: PositionType) => {
+        activeMovieId.setValue(index);
+        setModal({movie, position});
+    };
+
+    const close = () => {
+        activeMovieId.setValue(-1);
+        setModal(null);
+    };
+
     return (
         <>
             <StatusBar barStyle="dark-content" />
             <SafeAreaView>
-                <ScrollView
-                    contentInsetAdjustmentBehavior="automatic"
-                    style={styles.scrollView}>
-                    <Header />
-                    {global.HermesInternal == null ? null : (
-                        <View style={styles.engine}>
-                            <Text style={styles.footer}>Engine: Hermes</Text>
-                        </View>
-                    )}
-                    <View style={styles.body}>
-                        <View style={styles.sectionContainer}>
-                            <Text style={styles.sectionTitle}>Step One</Text>
-                            <Text style={styles.sectionDescription}>
-                                Edit{' '}
-                                <Text style={styles.highlight}>App.tsx</Text> to
-                                change this screen and then come back to see
-                                your edits.
-                            </Text>
-                        </View>
-                        <View style={styles.sectionContainer}>
-                            <Text style={styles.sectionTitle}>
-                                See Your Changes
-                            </Text>
-                            <Text style={styles.sectionDescription}>
-                                <ReloadInstructions />
-                            </Text>
-                        </View>
-                        <View style={styles.sectionContainer}>
-                            <Text style={styles.sectionTitle}>Debug</Text>
-                            <Text style={styles.sectionDescription}>
-                                <DebugInstructions />
-                            </Text>
-                        </View>
-                        <View style={styles.sectionContainer}>
-                            <Text style={styles.sectionTitle}>Learn More</Text>
-                            <Text style={styles.sectionDescription}>
-                                Read the docs to discover what to do next:
-                            </Text>
-                        </View>
-                        <LearnMoreLinks />
-                    </View>
+                <ScrollView contentInsetAdjustmentBehavior="automatic">
+                    {movies.map((movie, index) => (
+                        <Movie
+                            activeMovieId={activeMovieId}
+                            key={movie.name}
+                            index={index}
+                            movie={movie}
+                            open={open}
+                        />
+                    ))}
                 </ScrollView>
+                {modal !== null && <Modal {...modal} close={close} />}
             </SafeAreaView>
         </>
     );
 };
 
-const styles = StyleSheet.create({
-    scrollView: {
-        backgroundColor: Colors.lighter,
-    },
-    engine: {
-        position: 'absolute',
-        right: 0,
-    },
-    body: {
-        backgroundColor: Colors.white,
-    },
-    sectionContainer: {
-        marginTop: 32,
-        paddingHorizontal: 24,
-    },
-    sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: Colors.black,
-    },
-    sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-        color: Colors.dark,
-    },
-    highlight: {
-        fontWeight: '700',
-    },
-    footer: {
-        color: Colors.dark,
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingRight: 12,
-        textAlign: 'right',
-    },
-});
-
-export default App;
+export default Start;
