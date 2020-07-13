@@ -43,6 +43,7 @@ interface ModalProps {
     close: () => void;
 }
 
+// Uppercases the first letter of each word in the title
 function titleCase(value: string): string {
     let title = '';
     let shouldUpcase = true;

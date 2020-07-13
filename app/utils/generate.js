@@ -16,8 +16,8 @@ const fuzzCount = (count) => {
 const makeMovie = (i) => {
     const movie = moviesData[i];
     return {
-        ...movie,
         id: uuid(),
+        ...movie,
     };
 };
 
