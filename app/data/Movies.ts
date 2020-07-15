@@ -1,5 +1,9 @@
 import type Movie from '@app/types/Movie';
 
+// We would normally get a list of movies from some API.
+// For now we just hardcode some movie objects and leave
+// it up to a util function to generate a random number of
+// movies from these values.
 const Movies: Array<Movie> = [
     {
         name: 'Aladdin',

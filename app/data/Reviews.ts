@@ -1,3 +1,7 @@
+// We would normally get reviews for a movie from an API.
+// For now we just hardcode some reviews and leave
+// it up to a util function to generate a random number of
+// reviews from these values.
 const Reviews: Array<string> = [
     'First!!!!',
     'Cool!',
