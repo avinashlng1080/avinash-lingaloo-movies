@@ -20,3 +20,6 @@ During your interview you will need to answer questions about how you found the 
 4. Start your debugging session and fix everything you are able to find.
 5. Commit the changes to **your** repository.
 6. Prepare for the interview and have your camera on ;).
+
+#### Pro tip
+* You'll notice the animated transitions in the app are not very smooth. The animation itself is *not* the problem.
