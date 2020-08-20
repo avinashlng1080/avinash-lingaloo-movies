@@ -43,6 +43,7 @@ const Start = () => {
             <StatusBar barStyle="dark-content" />
             <SafeAreaView>
                 <FlatList
+                    contentInsetAdjustmentBehavior="automatic"
                     data={movies}
                     keyExtractor={(item, index) => `${item.name}-${index}`}
                     renderItem={({item, index}) => {
