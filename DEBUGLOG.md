@@ -25,7 +25,8 @@ in SplashScreen.tsx
 * However, I implemented a guard check and safe length logic in the generate function
 
 #### 4. Slow loading of images 
-
+* could have optmized the size 
+* use flatlist 
 #### 5. Left console logs in code 
 * cleaned
 
