@@ -1,13 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    useWindowDimensions,
-    View,
-} from 'react-native';
-import Animated, {useCode, clockRunning} from 'react-native-reanimated';
+import {ScrollView, StyleSheet, Text, useWindowDimensions, View,} from 'react-native';
+import Animated, {clockRunning, useCode} from 'react-native-reanimated';
 
 import Poster from '@components/Poster';
 import SwipeToClose from '@components/SwipeToClose';
