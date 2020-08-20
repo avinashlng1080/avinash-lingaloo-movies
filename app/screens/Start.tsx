@@ -43,15 +43,18 @@ const Start = () => {
             <StatusBar barStyle="dark-content" />
             <SafeAreaView>
                 <ScrollView contentInsetAdjustmentBehavior="automatic">
-                    {movies.map((movie, index) => (
-                        <Movie
-                            activeMovieId={activeMovieId}
-                            key={movie.name}
-                            index={index}
-                            movie={movie}
-                            open={open}
-                        />
-                    ))}
+                    {movies.map((movie, index) => {
+                        const uniqueKey = movie?.id ?? movie.name;
+                        return (
+                            <Movie
+                                activeMovieId={activeMovieId}
+                                key={uniqueKey}
+                                index={index}
+                                movie={movie}
+                                open={open}
+                            />
+                        );
+                    })}
                 </ScrollView>
                 {modal !== null && <Modal {...modal} close={close} />}
             </SafeAreaView>

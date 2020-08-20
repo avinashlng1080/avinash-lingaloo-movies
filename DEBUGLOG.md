@@ -10,3 +10,17 @@ Error : Unable to run on iOS - We ran "xcodebuild" command but it exited with er
 * pod install
 
 * build succeeded in XCode
+
+
+##### 2. Yellow box Warning : Each child in a list should have a unique key prop - Check the render method of Start
+
+* renamed generate.js to generate.ts
+* added   const uniqueKey = movie?.id ?? movie.name; in Start.tsx
+
+
+#### 3. RENDER MOVIE undefined
+
+
+#### 4. Slow loading of images 
+
+
