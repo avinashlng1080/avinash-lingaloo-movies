@@ -1,6 +1,6 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {FlatList, SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {FlatList, SafeAreaView, StatusBar} from 'react-native';
 import {useValue} from 'react-native-redash';
 
 import Modal from '@components/Modal';

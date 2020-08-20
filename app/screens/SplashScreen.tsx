@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-import React, {useRef, useCallback} from 'react';
+import React, {useCallback, useRef} from 'react';
 import {Animated, StatusBar, StyleSheet} from 'react-native';
 
 import generateMovies from '@utils/generate';
