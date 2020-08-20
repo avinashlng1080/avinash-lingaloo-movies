@@ -19,8 +19,13 @@ Error : Unable to run on iOS - We ran "xcodebuild" command but it exited with er
 
 
 #### 3. RENDER MOVIE undefined
-
+* 20 movies for 25 rendering -> 5 are undefined in the movies array
+* This can be fixed by changing  const movies: Array<Movie> = generateMovies(20, 5);
+in SplashScreen.tsx
+* However, I implemented a guard check and safe length logic in the generate function
 
 #### 4. Slow loading of images 
+
+#### 5. Left console logs in code 
 
 
