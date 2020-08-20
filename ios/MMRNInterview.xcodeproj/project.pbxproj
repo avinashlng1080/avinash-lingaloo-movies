@@ -12,8 +12,8 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		AC96E1AFB40BDAF47219CA9B /* libPods-MMRNInterview-MMRNInterviewTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2C1A27316FF046F15F7A02 /* libPods-MMRNInterview-MMRNInterviewTests.a */; };
-		CA2DF63FF22D0EE889060774 /* libPods-MMRNInterview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0E42AF063A199C520C70D8 /* libPods-MMRNInterview.a */; };
+		CFC20BDCE89E95B00CA98362 /* libPods-MMRNInterview-MMRNInterviewTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5EF7F6CE295C40C09D90B76 /* libPods-MMRNInterview-MMRNInterviewTests.a */; };
+		F0D4FB3A8A67A125D60FFBBA /* libPods-MMRNInterview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00FF919362F2DF233D035EA1 /* libPods-MMRNInterview.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +31,7 @@
 		00E356EE1AD99517003FC87E /* MMRNInterviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MMRNInterviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MMRNInterviewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMRNInterviewTests.m; sourceTree = "<group>"; };
+		00FF919362F2DF233D035EA1 /* libPods-MMRNInterview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MMRNInterview.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* MMRNInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRNInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MMRNInterview/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MMRNInterview/AppDelegate.m; sourceTree = "<group>"; };
@@ -38,20 +39,13 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MMRNInterview/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MMRNInterview/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MMRNInterview/main.m; sourceTree = "<group>"; };
-		1EBF904431F67735C7E2027A /* Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig"; path = "Target Support Files/Pods-MMRNInterview-MMRNInterviewTests/Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig"; sourceTree = "<group>"; };
-		2EEE5A1F73CB2200516C2B15 /* libPods-MMRNInterview-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MMRNInterview-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DE5011E2962807A80F90B98 /* Pods-MMRNInterview-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MMRNInterview-tvOS/Pods-MMRNInterview-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		5568CB9262A7D185576E7EAB /* Pods-MMRNInterview-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-MMRNInterview-tvOSTests/Pods-MMRNInterview-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		6E0E42AF063A199C520C70D8 /* libPods-MMRNInterview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MMRNInterview.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E367ED6CF3819AB45EA0245 /* Pods-MMRNInterview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview.debug.xcconfig"; path = "Target Support Files/Pods-MMRNInterview/Pods-MMRNInterview.debug.xcconfig"; sourceTree = "<group>"; };
-		84F79B12BC7C55696484533C /* Pods-MMRNInterview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview.release.xcconfig"; path = "Target Support Files/Pods-MMRNInterview/Pods-MMRNInterview.release.xcconfig"; sourceTree = "<group>"; };
-		9A2C1A27316FF046F15F7A02 /* libPods-MMRNInterview-MMRNInterviewTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MMRNInterview-MMRNInterviewTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3F890718B547EBBF7E2C388 /* Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig"; path = "Target Support Files/Pods-MMRNInterview-MMRNInterviewTests/Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C5587B0EB04B3C2AF2C9433E /* Pods-MMRNInterview-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-MMRNInterview-tvOSTests/Pods-MMRNInterview-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C9F73B92C5FF609DD34D2CA0 /* libPods-MMRNInterview-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MMRNInterview-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6AB1B8815638A16E47198F1 /* Pods-MMRNInterview-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview-tvOS.release.xcconfig"; path = "Target Support Files/Pods-MMRNInterview-tvOS/Pods-MMRNInterview-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		3241E1BDAFBEB9E2CEB2C32B /* Pods-MMRNInterview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview.release.xcconfig"; path = "Target Support Files/Pods-MMRNInterview/Pods-MMRNInterview.release.xcconfig"; sourceTree = "<group>"; };
+		343F44A1D18BD9F3A432B768 /* Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig"; path = "Target Support Files/Pods-MMRNInterview-MMRNInterviewTests/Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig"; sourceTree = "<group>"; };
+		99C70D25D3A0A5755A4756F1 /* Pods-MMRNInterview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview.debug.xcconfig"; path = "Target Support Files/Pods-MMRNInterview/Pods-MMRNInterview.debug.xcconfig"; sourceTree = "<group>"; };
+		B7886D813905ED3B1DF83C6B /* Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig"; path = "Target Support Files/Pods-MMRNInterview-MMRNInterviewTests/Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F5EF7F6CE295C40C09D90B76 /* libPods-MMRNInterview-MMRNInterviewTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MMRNInterview-MMRNInterviewTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC96E1AFB40BDAF47219CA9B /* libPods-MMRNInterview-MMRNInterviewTests.a in Frameworks */,
+				CFC20BDCE89E95B00CA98362 /* libPods-MMRNInterview-MMRNInterviewTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2DF63FF22D0EE889060774 /* libPods-MMRNInterview.a in Frameworks */,
+				F0D4FB3A8A67A125D60FFBBA /* libPods-MMRNInterview.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,10 +104,8 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				6E0E42AF063A199C520C70D8 /* libPods-MMRNInterview.a */,
-				9A2C1A27316FF046F15F7A02 /* libPods-MMRNInterview-MMRNInterviewTests.a */,
-				2EEE5A1F73CB2200516C2B15 /* libPods-MMRNInterview-tvOS.a */,
-				C9F73B92C5FF609DD34D2CA0 /* libPods-MMRNInterview-tvOSTests.a */,
+				00FF919362F2DF233D035EA1 /* libPods-MMRNInterview.a */,
+				F5EF7F6CE295C40C09D90B76 /* libPods-MMRNInterview-MMRNInterviewTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,14 +113,10 @@
 		7D2A86FD11C94823CA9830AE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6E367ED6CF3819AB45EA0245 /* Pods-MMRNInterview.debug.xcconfig */,
-				84F79B12BC7C55696484533C /* Pods-MMRNInterview.release.xcconfig */,
-				C3F890718B547EBBF7E2C388 /* Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig */,
-				1EBF904431F67735C7E2027A /* Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig */,
-				3DE5011E2962807A80F90B98 /* Pods-MMRNInterview-tvOS.debug.xcconfig */,
-				D6AB1B8815638A16E47198F1 /* Pods-MMRNInterview-tvOS.release.xcconfig */,
-				C5587B0EB04B3C2AF2C9433E /* Pods-MMRNInterview-tvOSTests.debug.xcconfig */,
-				5568CB9262A7D185576E7EAB /* Pods-MMRNInterview-tvOSTests.release.xcconfig */,
+				99C70D25D3A0A5755A4756F1 /* Pods-MMRNInterview.debug.xcconfig */,
+				3241E1BDAFBEB9E2CEB2C32B /* Pods-MMRNInterview.release.xcconfig */,
+				343F44A1D18BD9F3A432B768 /* Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig */,
+				B7886D813905ED3B1DF83C6B /* Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -171,7 +159,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MMRNInterviewTests" */;
 			buildPhases = (
-				2EDC57A95340E776E9070BD1 /* [CP] Check Pods Manifest.lock */,
+				F1875ED8468DB9EC4CFE1B99 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -190,7 +178,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MMRNInterview" */;
 			buildPhases = (
-				B2A3F010A43187E20CC9E167 /* [CP] Check Pods Manifest.lock */,
+				50A9AF7B26A6043F5838A913 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -276,29 +264,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		2EDC57A95340E776E9070BD1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MMRNInterview-MMRNInterviewTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B2A3F010A43187E20CC9E167 /* [CP] Check Pods Manifest.lock */ = {
+		50A9AF7B26A6043F5838A913 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -314,6 +280,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-MMRNInterview-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1875ED8468DB9EC4CFE1B99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MMRNInterview-MMRNInterviewTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -384,7 +372,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3F890718B547EBBF7E2C388 /* Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig */;
+			baseConfigurationReference = 343F44A1D18BD9F3A432B768 /* Pods-MMRNInterview-MMRNInterviewTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -407,7 +395,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EBF904431F67735C7E2027A /* Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig */;
+			baseConfigurationReference = B7886D813905ED3B1DF83C6B /* Pods-MMRNInterview-MMRNInterviewTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -427,7 +415,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E367ED6CF3819AB45EA0245 /* Pods-MMRNInterview.debug.xcconfig */;
+			baseConfigurationReference = 99C70D25D3A0A5755A4756F1 /* Pods-MMRNInterview.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -454,7 +442,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84F79B12BC7C55696484533C /* Pods-MMRNInterview.release.xcconfig */;
+			baseConfigurationReference = 3241E1BDAFBEB9E2CEB2C32B /* Pods-MMRNInterview.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

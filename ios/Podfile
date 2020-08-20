@@ -94,11 +94,11 @@ target 'MMRNInterview' do
   end
 end
 
-target 'MMRNInterview-tvOS' do
+#target 'MMRNInterview-tvOS' do
   # Pods for MMRNInterview-tvOS
 
-  target 'MMRNInterview-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-end
+ # target 'MMRNInterview-tvOSTests' do
+   # inherit! :search_paths
+  #  # Pods for testing
+  #end
+#end
