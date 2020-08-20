@@ -47,8 +47,6 @@ const Movie = ({activeMovieId, index, movie, open}: MovieProps) => {
         }
     };
 
-    console.log('RENDER MOVIE', movie.name);
-
     return (
         <TouchableWithoutFeedback onPress={startTransition}>
             <Animated.View

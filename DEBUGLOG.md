@@ -27,5 +27,5 @@ in SplashScreen.tsx
 #### 4. Slow loading of images 
 
 #### 5. Left console logs in code 
-
+* cleaned
 
