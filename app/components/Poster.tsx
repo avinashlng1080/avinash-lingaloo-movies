@@ -10,7 +10,8 @@ interface PosterProps {
     borderRadius?: Animated.Value<number>;
 }
 
-const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
+// const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
+
 const Poster = ({borderRadius, movie}: PosterProps) => {
     return (
         <>

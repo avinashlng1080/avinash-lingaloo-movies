@@ -28,6 +28,7 @@ interface SwipeToCloseProps {
 
 const SwipeToClose = ({children, y, opacity, scale: s}: SwipeToCloseProps) => {
     const scale = useValue(1);
+
     useCode(
         () => [
             cond(
@@ -37,7 +38,7 @@ const SwipeToClose = ({children, y, opacity, scale: s}: SwipeToCloseProps) => {
                 ),
                 s.value,
                 set(
-                    scale,
+                    s.value,
                     interpolate(y, {
                         inputRange: [0, 100],
                         outputRange: [1, 0.75],
