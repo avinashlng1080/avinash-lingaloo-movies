@@ -14,11 +14,15 @@ const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
 const Poster = ({borderRadius, movie}: PosterProps) => {
     return (
         <>
-            <AnimatedFastImage
-                source={{uri: movie.poster}}
-                style={[styles.image, {borderRadius: borderRadius || 8}]}
-                resizeMode={FastImage.resizeMode.cover}
-            />
+            <Animated.View
+                style={[styles.image, {borderRadius: borderRadius || 8}]}>
+                <FastImage
+                    source={{uri: movie.poster}}
+                    style={[styles.image]}
+                    resizeMode={FastImage.resizeMode.cover}
+                />
+            </Animated.View>
+
             <View style={styles.content}>
                 <Text style={styles.name}>{movie.name}</Text>
                 <Text style={styles.reviews}>{`Reviews: ${
