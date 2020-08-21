@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
+import FastImage from 'react-native-fast-image';
 
 import type MovieType from '@app/types/Movie';
 
@@ -9,12 +10,14 @@ interface PosterProps {
     borderRadius?: Animated.Value<number>;
 }
 
+const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
 const Poster = ({borderRadius, movie}: PosterProps) => {
     return (
         <>
-            <Animated.Image
+            <AnimatedFastImage
                 source={{uri: movie.poster}}
                 style={[styles.image, {borderRadius: borderRadius || 8}]}
+                resizeMode={FastImage.resizeMode.cover}
             />
             <View style={styles.content}>
                 <Text style={styles.name}>{movie.name}</Text>
