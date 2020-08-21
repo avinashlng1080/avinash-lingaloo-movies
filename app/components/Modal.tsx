@@ -108,7 +108,7 @@ const Modal = ({movie, position, close}: ModalProps) => {
                 ],
             ),
         ],
-        [position, close, movie],
+        [],
     );
 
     return (

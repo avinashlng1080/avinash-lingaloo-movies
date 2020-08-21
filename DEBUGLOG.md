@@ -26,7 +26,10 @@ in SplashScreen.tsx
 
 #### 4. Slow loading of images 
 * could have optmized the size 
-* use flatlist 
+* use flatlist and used keyExtractor
+
 #### 5. Left console logs in code 
 * cleaned
 
+#### 6. Animation issue 
+* Renamed scale to s in SwipeToClose
