@@ -1,13 +1,14 @@
-import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import React, {memo} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import type MovieType from '@app/types/Movie';
 import FastImage from 'react-native-fast-image';
-import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@utils/CONSTANTS';
+import List from '@components/List';
+import MovieDetail from '@components/MovieDetail';
 
 type DetailParamList = {
     Detail: {
-        movies: MovieType;
+        movie: MovieType;
     };
 };
 
@@ -15,18 +16,49 @@ type DetailRoute = RouteProp<DetailParamList, 'Detail'>;
 
 const Detail = () => {
     const route = useRoute<DetailRoute>();
-    const {movie} = (route?.params as unknown) as MovieType;
+    const movie = route?.params?.movie;
     // FIXME :  show list of cast and list of reviews
     // console.log(movie);
     return (
         <View style={styles.container}>
-            <ScrollView bounces={false}>
-                <FastImage
-                    source={{uri: movie.poster}}
-                    style={styles.image}
-                    resizeMode={FastImage.resizeMode.cover}
-                />
-            </ScrollView>
+            <List
+                ListHeaderComponent={() => {
+                    return (
+                        <>
+                            <FastImage
+                                source={{uri: movie.poster}}
+                                style={styles.image}
+                                resizeMode={FastImage.resizeMode.contain}
+                            />
+                            {movie?.name && (
+                                <MovieDetail
+                                    title={'Title'}
+                                    description={movie?.name}
+                                />
+                            )}
+                            {movie?.description && (
+                                <MovieDetail
+                                    title={'Synopsis'}
+                                    description={movie?.description}
+                                />
+                            )}
+                            {movie?.gender && (
+                                <MovieDetail
+                                    title={'Genre'}
+                                    description={movie?.gender}
+                                />
+                            )}
+                            {movie?.cast && (
+                                <Text style={styles.title}>Cast</Text>
+                            )}
+                        </>
+                    );
+                }}
+                data={movie?.cast}
+                renderItem={({item}) => {
+                    return <Text style={styles.cast}>{item}</Text>;
+                }}
+            />
         </View>
     );
 };
@@ -34,11 +66,27 @@ const Detail = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
+    },
+    title: {
+        marginVertical: 20,
+        fontWeight: 'bold',
+        fontSize: 25,
+        marginLeft: 10,
+        width: '80%',
+        textAlign: 'center',
+        alignSelf: 'center',
+    },
+    cast: {
+        fontSize: 20,
+        marginLeft: 20,
+        alignSelf: 'center',
     },
     image: {
-        // ...StyleSheet.absoluteFillObject,
-        width: SCREEN_WIDTH,
-        height: SCREEN_HEIGHT / 1.5,
+        width: 350,
+        height: 350,
+        alignSelf: 'center',
     },
 });
-export default Detail;
+
+export default memo(Detail);

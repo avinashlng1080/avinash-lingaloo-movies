@@ -20,7 +20,7 @@ const Poster = ({borderRadius, movie}: PosterProps) => {
                 <FastImage
                     source={{uri: movie.poster}}
                     style={styles.image}
-                    resizeMode={FastImage.resizeMode.cover}
+                    resizeMode={FastImage.resizeMode.contain}
                 />
             </Animated.View>
 
