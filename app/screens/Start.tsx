@@ -1,6 +1,11 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {FlatList, SafeAreaView, StatusBar} from 'react-native';
+import {
+    FlatList,
+    SafeAreaView,
+    StatusBar,
+    useWindowDimensions,
+} from 'react-native';
 import {useValue} from 'react-native-redash';
 
 import Modal from '@components/Modal';
@@ -8,6 +13,7 @@ import Movie from '@components/Movie';
 
 import type MovieType from '@app/types/Movie';
 import type PositionType from '@app/types/Position';
+import {MOVIE_POSTER} from '@utils/CONSTANTS';
 
 interface ModalState {
     movie: MovieType;
@@ -46,7 +52,16 @@ const Start = () => {
                     bounces={false}
                     contentInsetAdjustmentBehavior="automatic"
                     data={movies}
+                    initialNumToRender={5}
+                    maxToRenderPerBatch={5}
                     keyExtractor={(item, index) => `${item.name}-${index}`}
+                    getItemLayout={(data, index) => {
+                        return {
+                            length: MOVIE_POSTER,
+                            offset: MOVIE_POSTER * index,
+                            index,
+                        };
+                    }}
                     renderItem={({item, index}) => {
                         return (
                             <Movie
