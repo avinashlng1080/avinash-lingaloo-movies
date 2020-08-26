@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import type MovieType from '@app/types/Movie';
 import FastImage from 'react-native-fast-image';
 import List from '@components/List';
@@ -17,8 +17,12 @@ type DetailRoute = RouteProp<DetailParamList, 'Detail'>;
 const Detail = () => {
     const route = useRoute<DetailRoute>();
     const movie = route?.params?.movie;
-    // FIXME :  show list of cast and list of reviews
-    // console.log(movie);
+    const navigation = useNavigation();
+
+    if (movie?.name) {
+        navigation.setOptions({title: movie?.name});
+    }
+
     return (
         <View style={styles.container}>
             <List
@@ -55,7 +59,7 @@ const Detail = () => {
                     );
                 }}
                 data={movie?.cast}
-                renderItem={({item}) => {
+                renderItem={({item}: {item: string}) => {
                     return <Text style={styles.cast}>{item}</Text>;
                 }}
             />

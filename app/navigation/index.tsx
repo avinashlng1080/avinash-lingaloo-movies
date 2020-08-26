@@ -30,8 +30,20 @@ const App = () => (
                     cardStyleInterpolator: forFade,
                 }}>
                 <Stack.Screen name="Splash" component={SplashScreen} />
-                <Stack.Screen name="Start" component={Start} />
-                <Stack.Screen name="Detail" component={Detail} />
+                <Stack.Screen
+                    name="Start"
+                    component={Start}
+                    options={() => ({
+                        headerTitle: 'Movies',
+                    })}
+                />
+                <Stack.Screen
+                    name="Detail"
+                    component={Detail}
+                    options={() => ({
+                        headerShown: true,
+                    })}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     </>

@@ -54,7 +54,13 @@ const Start = () => {
                             index,
                         };
                     }}
-                    renderItem={({item, index}) => {
+                    renderItem={({
+                        item,
+                        index,
+                    }: {
+                        item: MovieType;
+                        index: number;
+                    }) => {
                         return (
                             <Movie
                                 activeMovieId={activeMovieId}
