@@ -7,6 +7,7 @@ import {enableScreens} from 'react-native-screens';
 
 import SplashScreen from '@screens/SplashScreen';
 import Start from '@screens/Start';
+import Detail from '@screens/Detail';
 
 enableScreens();
 
@@ -29,7 +30,20 @@ const App = () => (
                     cardStyleInterpolator: forFade,
                 }}>
                 <Stack.Screen name="Splash" component={SplashScreen} />
-                <Stack.Screen name="Start" component={Start} />
+                <Stack.Screen
+                    name="Start"
+                    component={Start}
+                    options={() => ({
+                        headerTitle: 'Movies',
+                    })}
+                />
+                <Stack.Screen
+                    name="Detail"
+                    component={Detail}
+                    options={() => ({
+                        headerShown: true,
+                    })}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     </>

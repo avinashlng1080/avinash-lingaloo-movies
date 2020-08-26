@@ -1,6 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {ScrollView, StyleSheet, Text, useWindowDimensions, View,} from 'react-native';
+import React, {memo} from 'react';
+import {
+    ScrollView,
+    StyleSheet,
+    Text,
+    useWindowDimensions,
+    View,
+} from 'react-native';
 import Animated, {clockRunning, useCode} from 'react-native-reanimated';
 
 import Poster from '@components/Poster';
@@ -156,4 +162,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Modal;
+export default memo(Modal);

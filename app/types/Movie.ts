@@ -7,4 +7,5 @@ export default interface Movie {
     gender: string;
     description: string;
     reviews?: Array<Review>;
+    cast?: Array<String>;
 }

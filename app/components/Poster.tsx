@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 import FastImage from 'react-native-fast-image';
@@ -19,8 +19,8 @@ const Poster = ({borderRadius, movie}: PosterProps) => {
                 style={[styles.image, {borderRadius: borderRadius || 8}]}>
                 <FastImage
                     source={{uri: movie.poster}}
-                    style={[styles.image]}
-                    resizeMode={FastImage.resizeMode.cover}
+                    style={styles.image}
+                    resizeMode={FastImage.resizeMode.contain}
                 />
             </Animated.View>
 
@@ -37,9 +37,9 @@ const Poster = ({borderRadius, movie}: PosterProps) => {
 const styles = StyleSheet.create({
     content: {
         padding: 16,
-        paddingTop: 20,
+        paddingTop: 30,
         borderRadius: 8,
-        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+        backgroundColor: 'rgba(0, 0, 0, 0.45)',
         width: '100%',
     },
     name: {
@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
             height: 2,
         },
         textShadowRadius: 2,
-        flex: 1,
     },
     reviews: {
         color: 'white',
@@ -72,4 +71,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Poster;
+export default memo(Poster);

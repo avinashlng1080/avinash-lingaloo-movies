@@ -12,6 +12,12 @@ const Movies: Array<Movie> = [
         gender: 'Family',
         description:
             'A kind-hearted street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make their deepest wishes come true.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Aquaman',
@@ -20,6 +26,12 @@ const Movies: Array<Movie> = [
         gender: 'Adventure',
         description:
             'Arthur Curry (Jason Momoa), the human-born heir to the underwater kingdom of Atlantis, goes on a quest to prevent a war between the worlds of ocean and land.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Avatar',
@@ -28,6 +40,12 @@ const Movies: Array<Movie> = [
         gender: 'Adventure',
         description:
             'A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Beauty and the beast',
@@ -36,6 +54,12 @@ const Movies: Array<Movie> = [
         gender: 'Fantasy',
         description:
             'A selfish Prince is cursed to become a monster for the rest of his life, unless he learns to fall in love with a beautiful young woman he keeps prisoner.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Black Widow',
@@ -44,6 +68,12 @@ const Movies: Array<Movie> = [
         gender: 'Action',
         description:
             'A film about Natasha Romanoff in her quests between the films Civil War and Infinity War.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Blade Runner',
@@ -52,6 +82,12 @@ const Movies: Array<Movie> = [
         gender: 'Sci-Fi',
         description:
             'A blade runner must pursue and terminate four replicants who stole a ship in space, and have returned to Earth to find their creator.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Bloodshot',
@@ -60,6 +96,12 @@ const Movies: Array<Movie> = [
         gender: 'Action',
         description:
             'Ray Garrison, a slain soldier, is re-animated with superpowers.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Doctor Strange',
@@ -68,6 +110,12 @@ const Movies: Array<Movie> = [
         gender: 'Action',
         description:
             'While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Extraction',
@@ -76,6 +124,12 @@ const Movies: Array<Movie> = [
         gender: 'Action',
         description:
             "Tyler Rake, a fearless black market mercenary, embarks on the most deadly extraction of his career when he's enlisted to rescue the kidnapped son of an imprisoned international crime lord.",
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'The Hangover',
@@ -84,6 +138,12 @@ const Movies: Array<Movie> = [
         gender: 'Comedy',
         description:
             'Three buddies wake up from a bachelor party in Las Vegas, with no memory of the previous night and the bachelor missing. They make their way around the city in order to find their friend before his wedding.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Inception',
@@ -100,6 +160,12 @@ const Movies: Array<Movie> = [
         gender: 'Action',
         description:
             'Chased by a vengeful criminal, the feds and a gang of otherworldly soldiers, a recently released ex-con, and his adopted teenage brother are forced to go on the run with a weapon of mysterious origin as their only protection.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'The Lion King',
@@ -108,6 +174,12 @@ const Movies: Array<Movie> = [
         gender: 'Animation',
         description:
             'Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'The Matrix',
@@ -116,6 +188,12 @@ const Movies: Array<Movie> = [
         gender: 'Sci-fi',
         description:
             'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Pirates of the Caribbean: On Stranger Tides',
@@ -124,6 +202,12 @@ const Movies: Array<Movie> = [
         gender: 'Adventure',
         description:
             'Jack Sparrow and Barbossa embark on a quest to find the elusive fountain of youth, only to discover that Blackbeard and his daughter are after it too.',
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Rambo: First Blood',
@@ -148,6 +232,13 @@ const Movies: Array<Movie> = [
         gender: 'Biography',
         description:
             'The story of Togo, the sled dog who led the 1925 serum run yet was considered by most to be too small and weak to lead such an intense race.',
+
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Tron: Legacy',
@@ -155,7 +246,14 @@ const Movies: Array<Movie> = [
             'https://raw.githubusercontent.com/enahum/mattermost-react-native-interview/master/posters/Tron.jpg',
         gender: 'Sci-Fi',
         description:
-            "The son of a virtual world designer goes looking for his father and ends up inside the digital world that his father designed. He meets his father's corrupted creation and a unique ally who was born inside the digital world.",
+            'The son of a virtual world designer goes looking for his father and ends up inside the digital world' +
+            " that his father designed. He meets his father's corrupted creation and a unique ally who was born inside the digital world.",
+        cast: [
+            'Keenu Reeves as John Wick',
+            "Riccardo Scamarcio as Santino D'Antonio",
+            'Ian McShane as Winston',
+            'Ruby Rose as Ares',
+        ],
     },
     {
         name: 'Up',
