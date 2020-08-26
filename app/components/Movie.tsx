@@ -1,5 +1,5 @@
 import memoize from 'memoize-one';
-import React, {useRef} from 'react';
+import React, {memo, useRef} from 'react';
 import {StyleSheet, useWindowDimensions, View} from 'react-native';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Animated, {cond, eq} from 'react-native-reanimated';
@@ -117,4 +117,4 @@ const getStyles = memoize((width: number, height: number) =>
     }),
 );
 
-export default Movie;
+export default memo(Movie);
