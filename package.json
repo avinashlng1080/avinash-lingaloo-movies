@@ -39,6 +39,7 @@
     "@react-native-community/eslint-config": "2.0.0",
     "@types/jest": "26.0.4",
     "@types/react-native": "0.62.17",
+    "@types/react-navigation": "^3.4.0",
     "@types/react-test-renderer": "16.9.2",
     "@types/uuid": "8.0.0",
     "@typescript-eslint/eslint-plugin": "3.6.0",

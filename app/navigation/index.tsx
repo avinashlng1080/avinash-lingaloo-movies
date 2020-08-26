@@ -7,6 +7,7 @@ import {enableScreens} from 'react-native-screens';
 
 import SplashScreen from '@screens/SplashScreen';
 import Start from '@screens/Start';
+import Detail from '@screens/Detail';
 
 enableScreens();
 
@@ -30,6 +31,7 @@ const App = () => (
                 }}>
                 <Stack.Screen name="Splash" component={SplashScreen} />
                 <Stack.Screen name="Start" component={Start} />
+                <Stack.Screen name="Detail" component={Detail} />
             </Stack.Navigator>
         </NavigationContainer>
     </>
