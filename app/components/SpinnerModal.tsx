@@ -1,11 +1,29 @@
 import React from 'react';
-import {ActivityIndicator, Modal, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, Modal, StyleSheet, View, Text} from 'react-native';
+
+import {useNetInfo} from '@react-native-community/netinfo';
 
 interface ISpinnerModal {
     modalVisible: boolean;
 }
 
 const SpinnerModal = ({modalVisible}: ISpinnerModal) => {
+    const netInfo = useNetInfo();
+
+    const renderDisclaimer = () => {
+        if (netInfo.isInternetReachable) {
+            return null;
+        }
+        return (
+            <View style={Styles.disclaimerContainer}>
+                <Text style={Styles.disclaimerText}>
+                    We can't load the movies as your internet connectivity is
+                    currently not optimum
+                </Text>
+            </View>
+        );
+    };
+
     return (
         <Modal
             animationType="slide"
@@ -16,6 +34,7 @@ const SpinnerModal = ({modalVisible}: ISpinnerModal) => {
                 <View style={[Styles.centerIt, Styles.activityBox]}>
                     <ActivityIndicator size="large" color="#ffffff" />
                 </View>
+                {renderDisclaimer()}
             </View>
         </Modal>
     );
@@ -35,6 +54,15 @@ const Styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 25,
+    },
+    disclaimerContainer: {
+        width: '70%',
+        marginVertical: 10,
+    },
+    disclaimerText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        textAlign: 'center',
     },
 });
 
