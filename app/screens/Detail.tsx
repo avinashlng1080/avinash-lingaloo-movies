@@ -5,7 +5,6 @@ import type MovieType from '@app/types/Movie';
 import FastImage from 'react-native-fast-image';
 import List from '@components/List';
 import MovieDetail from '@components/MovieDetail';
-import Review from '@app/types/Review';
 
 type DetailParamList = {
     Detail: {
@@ -43,11 +42,16 @@ const Detail = () => {
                             : reviewData;
 
                     return [
-                        <MovieDetail title={'Reviews'} />,
-                        <View style={styles.reviewContainer}>
+                        <MovieDetail
+                            key="ListFooter-MovieDetail"
+                            title={'Reviews'}
+                        />,
+                        <View
+                            key="ListFooter-View"
+                            style={styles.reviewContainer}>
                             {reviewData.map((rev) => (
                                 <Text
-                                    // key={`${rev?.body}`}
+                                    key={`${rev?.id}`}
                                     style={styles.reviewDesc}>
                                     {rev?.body}
                                 </Text>
