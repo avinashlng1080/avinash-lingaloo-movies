@@ -5,6 +5,7 @@ import type MovieType from '@app/types/Movie';
 import FastImage from 'react-native-fast-image';
 import List from '@components/List';
 import MovieDetail from '@components/MovieDetail';
+import Review from '@app/types/Review';
 
 type DetailParamList = {
     Detail: {
@@ -26,6 +27,34 @@ const Detail = () => {
     return (
         <View style={styles.container}>
             <List
+                ListFooterComponent={() => {
+                    const reviewData = movie?.reviews;
+
+                    console.log('here ==> ', Array.isArray(reviewData));
+                    console.log('here ==> ', reviewData);
+
+                    // if (!reviewData) {
+                    //     return null;
+                    // }
+
+                    const reviews =
+                        typeof reviewData === 'string'
+                            ? JSON.parse(reviewData)
+                            : reviewData;
+
+                    return [
+                        <MovieDetail title={'Reviews'} />,
+                        <View style={styles.reviewContainer}>
+                            {reviewData.map((rev) => (
+                                <Text
+                                    // key={`${rev?.body}`}
+                                    style={styles.reviewDesc}>
+                                    {rev?.body}
+                                </Text>
+                            ))}
+                        </View>,
+                    ];
+                }}
                 ListHeaderComponent={() => {
                     return (
                         <>
@@ -91,6 +120,10 @@ const styles = StyleSheet.create({
         height: 350,
         alignSelf: 'center',
     },
+    reviewDesc: {
+        fontSize: 19,
+    },
+    reviewContainer: {marginLeft: 25},
 });
 
 export default memo(Detail);
