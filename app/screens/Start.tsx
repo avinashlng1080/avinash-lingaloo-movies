@@ -11,18 +11,28 @@ import List from '@components/List';
 import SpinnerModal from '@components/SpinnerModal';
 import MovieDetail from '@components/MovieDetail';
 
+import Realm from 'realm';
+import {MovieSchema, ReviewSchema} from '../realm/model/RealmModels';
 // TODO : react-navigation-shared-element as per William Candillon
 
 const Start = () => {
     const navigation = useNavigation();
     const [movies, setMovies] = useState<MovieType[]>([]);
-    const [fetching, setFetching] = useState<boolean>(true);
+    const [fetching, setFetching] = useState<boolean>(false);
     const interceptorId = useRef(rax.attach());
 
     const activeMovieId = useValue<number>(-1);
 
+    // FIXME : add setTimeout for write after you've got a response
+
+    // Read all object stored in Realm and load them upfront
     useEffect(() => {
-        getMovies();
+        loadPersistedRealm();
+    }, []);
+
+    // Get movies on screen load
+    useEffect(() => {
+        // getMovies();
     }, []);
 
     useFocusEffect(
@@ -45,7 +55,7 @@ const Start = () => {
                 url:
                     'https://us-central1-mattermost-764a8.cloudfunctions.net/generateMovies',
                 data: {
-                    movieCount: 130,
+                    movieCount: 1,
                     reviewsPerMovie: 4,
                 },
                 headers: {'Content-Type': 'application/json'},
@@ -80,6 +90,9 @@ const Start = () => {
             const movie = movieResponse?.data?.movies;
             setMovies(movie);
             setFetching(false);
+            if (movie.length > 0) {
+                writeToRealm(movie);
+            }
         } catch (e) {
             setFetching(false);
             setMovies([]);
@@ -87,7 +100,50 @@ const Start = () => {
         }
     };
 
-    console.log('render <<<<<');
+    const loadPersistedRealm = () => {
+        Realm.open({
+            schema: [MovieSchema, ReviewSchema],
+        }).then((realm) => {
+            const persistedMovie = Array.from(
+                realm.objects('Movie'),
+            ) as MovieType[];
+            // if (persistedMovie?.length > 0) {
+            //     setMovies(persistedMovie);
+            // }
+            console.log('reviews => ', persistedMovie, persistedMovie.cast);
+            realm.close();
+        });
+        return;
+    };
+
+    const writeToRealm = (movie: MovieType[]) => {
+        Realm.open({
+            schema: [MovieSchema, ReviewSchema],
+        })
+            .then((realm) => {
+                realm.write(() => {
+                    movie.forEach((mov: MovieType) => {
+                        realm.create('Movie', {
+                            id: mov?.id ?? '',
+                            name: mov?.name ?? '',
+                            poster: mov?.poster ?? '',
+                            gender: mov?.gender ?? '',
+                            description: mov?.description ?? '',
+                            reviews: mov?.reviews
+                                ? JSON.stringify(mov?.reviews)
+                                : '',
+                            cast: mov?.cast ? JSON.stringify(mov?.cast) : '',
+                        });
+                    });
+                });
+
+                realm.close();
+            })
+            .catch((error) => {
+                console.log('realm error ', error);
+            });
+        return;
+    };
 
     const renderMovieList = () => {
         return (
