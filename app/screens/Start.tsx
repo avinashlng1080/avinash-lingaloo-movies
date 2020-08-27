@@ -55,7 +55,7 @@ const Start = () => {
                 url:
                     'https://us-central1-mattermost-764a8.cloudfunctions.net/generateMovies',
                 data: {
-                    movieCount: 1,
+                    movieCount: 44,
                     reviewsPerMovie: 4,
                 },
                 headers: {'Content-Type': 'application/json'},
@@ -101,23 +101,23 @@ const Start = () => {
     };
 
     const loadPersistedRealm = () => {
-        Realm.open({
+        return Realm.open({
             schema: [MovieSchema, ReviewSchema],
         }).then((realm) => {
-            const persistedMovie = Array.from(
-                realm.objects('Movie'),
-            ) as MovieType[];
-            // if (persistedMovie?.length > 0) {
-            //     setMovies(persistedMovie);
-            // }
-            console.log('reviews => ', persistedMovie, persistedMovie.cast);
+            // FIXME :  this part is not clear
+            const persistedMovies = JSON.parse(
+                JSON.stringify(realm.objects('Movie')), // deep copy of the realm object
+            );
+
+            if (persistedMovies?.length > 0) {
+                setMovies(persistedMovies);
+            }
             realm.close();
         });
-        return;
     };
 
     const writeToRealm = (movie: MovieType[]) => {
-        Realm.open({
+        return Realm.open({
             schema: [MovieSchema, ReviewSchema],
         })
             .then((realm) => {
@@ -142,7 +142,6 @@ const Start = () => {
             .catch((error) => {
                 console.log('realm error ', error);
             });
-        return;
     };
 
     const renderMovieList = () => {
