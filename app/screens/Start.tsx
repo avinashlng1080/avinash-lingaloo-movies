@@ -1,6 +1,6 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {useValue} from 'react-native-redash';
 import axios from 'axios';
 import Movie from '@components/Movie';
@@ -17,6 +17,7 @@ const Start = () => {
     const navigation = useNavigation();
     const [movies, setMovies] = useState<MovieType[]>([]);
     const [fetching, setFetching] = useState<boolean>(true);
+    const interceptorId = useRef(rax.attach());
 
     const activeMovieId = useValue<number>(-1);
 
@@ -38,23 +39,22 @@ const Start = () => {
     const getMovies = async () => {
         try {
             setFetching(true);
-            const interceptorId = rax.attach();
             console.log('attache', interceptorId);
             const movieResponse = await axios({
                 method: 'post',
                 url:
                     'https://us-central1-mattermost-764a8.cloudfunctions.net/generateMovies',
                 data: {
-                    movieCount: 1,
-                    reviewsPerMovie: 1,
+                    movieCount: 130,
+                    reviewsPerMovie: 4,
                 },
                 headers: {'Content-Type': 'application/json'},
                 raxConfig: {
                     // Retry 3 times on requests that return a response (500, etc) before giving up.
-                    retry: 3,
+                    retry: 5,
                     // Retry twice on errors that don't return a response (ENOTFOUND, ETIMEDOUT, etc).
                     noResponseRetries: 1,
-                    retryDelay: 100,
+                    retryDelay: 300,
 
                     // Defaults to:['GET', 'HEAD', 'OPTIONS', 'DELETE', 'PUT']
                     httpMethodsToRetry: ['POST'], // NOTE:  COMMENT THIS LINE TO SEE IT CRASHING AT 500 error code <<<<
@@ -72,7 +72,7 @@ const Start = () => {
                     // You can detect when a retry is happening, and figure out how many
                     // retry attempts have been made
                     onRetryAttempt: (err) => {
-                        const cfg = rax.getConfig(err);
+                        // const cfg = rax.getConfig(err);
                         console.log('Retry attempt <<<<<<<<<<<<<<');
                     },
                 },

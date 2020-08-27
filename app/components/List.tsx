@@ -1,6 +1,7 @@
 import {FlatList} from 'react-native';
 import React, {memo} from 'react';
 
+// @ts-ignore
 const List = ({data, renderItem, ...props}) => {
     return (
         <FlatList
