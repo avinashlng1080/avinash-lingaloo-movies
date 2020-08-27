@@ -1,6 +1,6 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StatusBar, Text} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
 import {useValue} from 'react-native-redash';
 import axios from 'axios';
 import Movie from '@components/Movie';
@@ -9,12 +9,7 @@ import type MovieType from '@app/types/Movie';
 import {MOVIE_POSTER} from '@utils/CONSTANTS';
 import List from '@components/List';
 import SpinnerModal from '@components/SpinnerModal';
-
-type StartParamList = {
-    Start: {
-        movies: Array<MovieType>;
-    };
-};
+import MovieDetail from '@components/MovieDetail';
 
 // TODO : show processing spinner when fetching for movies
 // TODO : react-navigation-shared-element as per William Candillon
@@ -59,6 +54,8 @@ const Start = () => {
             setMovies(movie);
             setFetching(false);
         } catch (e) {
+            setFetching(false);
+            setMovies([]);
             console.log('in error ', e);
         }
     };
@@ -77,7 +74,20 @@ const Start = () => {
                     };
                 }}
                 ListEmptyComponent={() => {
-                    return <Text>No movies found</Text>; // FIXME : improve styling here
+                    return (
+                        <MovieDetail
+                            title="No movies found"
+                            containerStyle={Styles.centerHeaderTitle}
+                        />
+                    );
+                }}
+                ListHeaderComponent={() => {
+                    return (
+                        <MovieDetail
+                            title="Movies"
+                            containerStyle={Styles.centerHeaderTitle}
+                        />
+                    );
                 }}
                 renderItem={({
                     item,
@@ -100,7 +110,6 @@ const Start = () => {
     };
 
     const renderSpinner = () => {
-        console.log('>>> <<<<');
         return <SpinnerModal modalVisible={fetching} />;
     };
 
@@ -113,5 +122,12 @@ const Start = () => {
         </>
     );
 };
+
+const Styles = StyleSheet.create({
+    centerHeaderTitle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
 
 export default Start;
