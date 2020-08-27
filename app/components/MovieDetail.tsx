@@ -7,7 +7,7 @@ interface IMovieDetails {
     containerStyle?: object;
     descriptionStyle?: object;
     title: string;
-    description: string;
+    description?: string;
 }
 const MovieDetails = ({
     titleStyle,
@@ -16,10 +16,11 @@ const MovieDetails = ({
     title,
     description,
 }: IMovieDetails) => {
+    const titleString = description ? `${title}:` : title;
     return (
         <View style={[styles.container, containerStyle]}>
             <View>
-                <Text style={[styles.title, titleStyle]}>{title}:</Text>
+                <Text style={[styles.title, titleStyle]}>{titleString}</Text>
                 <Text style={[styles.description, descriptionStyle]}>
                     {description}
                 </Text>
