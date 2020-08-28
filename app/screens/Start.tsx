@@ -25,6 +25,9 @@ const Start = () => {
     const activeMovieId = useValue<number>(-1);
     const netInfo = useNetInfo();
 
+    // Please uncomment the below to open the realm db in Realm Studio
+    // console.log('REALM PATH', Realm.defaultPath);
+
     // Read all object stored in Realm and load them upfront
     useEffect(() => {
         loadPersistedRealm();
