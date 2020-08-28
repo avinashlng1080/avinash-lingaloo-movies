@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {enableScreens} from 'react-native-screens';
+import Toast from 'react-native-toast-message';
 
 import SplashScreen from '@screens/SplashScreen';
 import Start from '@screens/Start';
@@ -46,6 +47,7 @@ const App = () => (
                 />
             </Stack.Navigator>
         </NavigationContainer>
+        <Toast ref={(ref: any) => Toast.setRef(ref)} />
     </>
 );
 
