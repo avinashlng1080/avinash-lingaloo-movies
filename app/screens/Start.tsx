@@ -8,20 +8,23 @@ import * as rax from 'retry-axios';
 import type MovieType from '@app/types/Movie';
 import {MOVIE_POSTER} from '@utils/CONSTANTS';
 import List from '@components/List';
-import SpinnerModal from '@components/SpinnerModal';
 import MovieDetail from '@components/MovieDetail';
 import Toast from 'react-native-toast-message';
 
 import Realm from 'realm';
 import {MovieSchema, ReviewSchema} from '../realm/model/RealmModels';
+import {useNetInfo} from '@react-native-community/netinfo';
+
 // TODO : react-navigation-shared-element as per William Candillon
+// TODO : implement a service that would poll the movies endpoint after X amount of time
 
 const Start = () => {
     const navigation = useNavigation();
     const [movies, setMovies] = useState<MovieType[]>([]);
-    const [fetching, setFetching] = useState<boolean>(false);
+    // const [fetching, setFetching] = useState<boolean>(false);
     const interceptorId = useRef(rax.attach());
     const activeMovieId = useValue<number>(-1);
+    const netInfo = useNetInfo();
 
     // Read all object stored in Realm and load them upfront
     useEffect(() => {
@@ -41,8 +44,6 @@ const Start = () => {
 
     const getMovies = React.useCallback(async () => {
         try {
-            setFetching(true);
-            console.log('attache', interceptorId);
             Toast.show({
                 type: 'info',
                 position: 'bottom',
@@ -50,6 +51,7 @@ const Start = () => {
                 text2: 'bringing latest movies from server',
                 visibilityTime: 2000,
             });
+
             const movieResponse = await axios({
                 method: 'post',
                 url:
@@ -91,12 +93,12 @@ const Start = () => {
             const mergedMovies = [...movie, ...movies];
             const uniqueMovies = [...new Set(mergedMovies)];
             setMovies(uniqueMovies);
-            setFetching(false);
+            // setFetching(false);
             if (movie.length > 0) {
                 await writeToRealm(movie);
             }
         } catch (e) {
-            setFetching(false);
+            // setFetching(false);
             console.log('Axios error ', e);
         }
     }, []);
@@ -109,6 +111,23 @@ const Start = () => {
         };
     }, [getMovies]);
 
+    // If there's no internet at all
+    useEffect(() => {
+        console.log(netInfo);
+        if (!netInfo.isInternetReachable) {
+            Toast.show({
+                type: 'error',
+                position: 'top',
+                autoHide: false,
+                text1: 'NO INTERNET ACCESS',
+                text2:
+                    "We can't load the movies as your internet connectivity is currently not optimum",
+                visibilityTime: 5000,
+                topOffset: 50,
+            });
+        }
+    }, [netInfo]);
+
     const loadPersistedRealm = () => {
         return Realm.open({
             schema: [MovieSchema, ReviewSchema],
@@ -118,7 +137,6 @@ const Start = () => {
             );
 
             if (persistedMovies?.length > 0) {
-                console.log('here <<<<< ');
                 setMovies(persistedMovies);
             }
             realm.close();
@@ -158,7 +176,6 @@ const Start = () => {
             // <SpinnerModal key="SpinnerModal" modalVisible={fetching} />,
             <List
                 key="MovieList"
-                bounces={true}
                 data={movies}
                 // refreshing={fetching}
                 // onRefresh={getMovies}

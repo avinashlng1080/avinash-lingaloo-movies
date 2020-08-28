@@ -6,7 +6,6 @@ import FastImage from 'react-native-fast-image';
 import List from '@components/List';
 import MovieDetail from '@components/MovieDetail';
 import {getProperData} from '@utils/helpers';
-import Review from '@app/types/Review';
 
 type DetailParamList = {
     Detail: {
