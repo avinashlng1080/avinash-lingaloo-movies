@@ -1,6 +1,6 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import {useValue} from 'react-native-redash';
 import axios from 'axios';
 import Movie from '@components/Movie';
@@ -10,6 +10,7 @@ import {MOVIE_POSTER} from '@utils/CONSTANTS';
 import List from '@components/List';
 import SpinnerModal from '@components/SpinnerModal';
 import MovieDetail from '@components/MovieDetail';
+import Toast from 'react-native-toast-message';
 
 import Realm from 'realm';
 import {MovieSchema, ReviewSchema} from '../realm/model/RealmModels';
@@ -42,6 +43,13 @@ const Start = () => {
         try {
             setFetching(true);
             console.log('attache', interceptorId);
+            Toast.show({
+                type: 'info',
+                position: 'bottom',
+                text1: 'Loading...',
+                text2: 'bringing latest movies from server',
+                visibilityTime: 2000,
+            });
             const movieResponse = await axios({
                 method: 'post',
                 url:
@@ -147,7 +155,7 @@ const Start = () => {
 
     const renderMovieList = () => {
         return [
-            <SpinnerModal key="SpinnerModal" modalVisible={fetching} />,
+            // <SpinnerModal key="SpinnerModal" modalVisible={fetching} />,
             <List
                 key="MovieList"
                 bounces={true}
@@ -198,14 +206,18 @@ const Start = () => {
     };
 
     return (
-        <>
+        <View style={Styles.container}>
             <StatusBar barStyle="dark-content" />
             <SafeAreaView>{renderMovieList()}</SafeAreaView>
-        </>
+        </View>
     );
 };
 
 const Styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'rgba(143,188,143, 0.25)',
+    },
     centerHeaderTitle: {
         justifyContent: 'center',
         alignItems: 'center',

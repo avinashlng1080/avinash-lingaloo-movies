@@ -1,7 +1,7 @@
 import Review from '@app/types/Review';
 
 export const getProperData = (
-    reviewData: string | Review | String[] | undefined,
+    reviewData: string | Review[] | String[] | undefined,
 ) => {
     if (!reviewData) {
         return [];

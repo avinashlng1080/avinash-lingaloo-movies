@@ -6,6 +6,7 @@ import FastImage from 'react-native-fast-image';
 import List from '@components/List';
 import MovieDetail from '@components/MovieDetail';
 import {getProperData} from '@utils/helpers';
+import Review from '@app/types/Review';
 
 type DetailParamList = {
     Detail: {
@@ -23,8 +24,8 @@ const Detail = () => {
     if (movie?.name) {
         navigation.setOptions({title: movie?.name});
     }
-    const reviewData = movie?.reviews;
-    const castData = movie?.cast;
+    const reviewData = movie?.reviews ?? [];
+    const castData = movie?.cast ?? [];
 
     const reviews = getProperData(reviewData) || [];
     const casts = getProperData(castData) || [];
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        backgroundColor: 'rgba(143,188,143, 0.25)',
     },
     title: {
         marginVertical: 20,
