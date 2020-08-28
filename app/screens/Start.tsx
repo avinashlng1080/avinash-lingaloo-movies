@@ -59,7 +59,7 @@ const Start = () => {
                 url:
                     'https://us-central1-mattermost-764a8.cloudfunctions.net/generateMovies',
                 data: {
-                    movieCount: 45,
+                    movieCount: 1145,
                     reviewsPerMovie: 4,
                 },
                 headers: {'Content-Type': 'application/json'},
