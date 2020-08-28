@@ -47,7 +47,7 @@ const Start = () => {
                 url:
                     'https://us-central1-mattermost-764a8.cloudfunctions.net/generateMovies',
                 data: {
-                    movieCount: 44,
+                    movieCount: 45,
                     reviewsPerMovie: 4,
                 },
                 headers: {'Content-Type': 'application/json'},
@@ -80,8 +80,9 @@ const Start = () => {
                 },
             });
             const movie = movieResponse?.data?.movies;
-            // Merge list ?
-            setMovies(movie);
+            const mergedMovies = [...movie, ...movies];
+            const uniqueMovies = [...new Set(mergedMovies)];
+            setMovies(uniqueMovies);
             setFetching(false);
             if (movie.length > 0) {
                 await writeToRealm(movie);
@@ -152,7 +153,7 @@ const Start = () => {
                 bounces={true}
                 data={movies}
                 refreshing={fetching}
-                // onRefresh={getMovies}
+                onRefresh={getMovies}
                 getItemLayout={(data: MovieType[], index: number) => {
                     return {
                         length: MOVIE_POSTER,
