@@ -21,7 +21,6 @@ import {useNetInfo} from '@react-native-community/netinfo';
 const Start = () => {
     const navigation = useNavigation();
     const [movies, setMovies] = useState<MovieType[]>([]);
-    // const [fetching, setFetching] = useState<boolean>(false);
     const interceptorId = useRef(rax.attach());
     const activeMovieId = useValue<number>(-1);
     const netInfo = useNetInfo();
@@ -93,12 +92,10 @@ const Start = () => {
             const mergedMovies = [...movie, ...movies];
             const uniqueMovies = [...new Set(mergedMovies)];
             setMovies(uniqueMovies);
-            // setFetching(false);
             if (movie.length > 0) {
                 await writeToRealm(movie);
             }
         } catch (e) {
-            // setFetching(false);
             console.log('Axios error ', e);
         }
     }, []);
@@ -139,6 +136,7 @@ const Start = () => {
             if (persistedMovies?.length > 0) {
                 setMovies(persistedMovies);
             }
+
             realm.close();
         });
     };
@@ -173,12 +171,9 @@ const Start = () => {
 
     const renderMovieList = () => {
         return [
-            // <SpinnerModal key="SpinnerModal" modalVisible={fetching} />,
             <List
                 key="MovieList"
                 data={movies}
-                // refreshing={fetching}
-                // onRefresh={getMovies}
                 getItemLayout={(data: MovieType[], index: number) => {
                     return {
                         length: MOVIE_POSTER,
