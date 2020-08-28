@@ -77,7 +77,7 @@ const getStyles = memoize((width: number, height: number) =>
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
             borderWidth: 1,
-            borderColor: 'rgba(0, 0, 0, 0.1)',
+            borderColor: 'rgba(143,188,143, 0.75)',
         },
         content: {
             position: 'absolute',
