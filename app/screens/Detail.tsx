@@ -5,6 +5,7 @@ import type MovieType from '@app/types/Movie';
 import FastImage from 'react-native-fast-image';
 import List from '@components/List';
 import MovieDetail from '@components/MovieDetail';
+import {getProperData} from '@utils/helpers';
 
 type DetailParamList = {
     Detail: {
@@ -22,10 +23,34 @@ const Detail = () => {
     if (movie?.name) {
         navigation.setOptions({title: movie?.name});
     }
+    const reviewData = movie?.reviews;
+    const castData = movie?.cast;
+
+    const reviews = getProperData(reviewData) || [];
+    const casts = getProperData(castData) || [];
 
     return (
         <View style={styles.container}>
             <List
+                ListFooterComponent={() => {
+                    return [
+                        <MovieDetail
+                            key="ListFooter-MovieDetail"
+                            title={'Reviews'}
+                        />,
+                        <View
+                            key="ListFooter-View"
+                            style={styles.reviewContainer}>
+                            {reviews.map((rev: {id: string; body: string}) => (
+                                <Text
+                                    key={`${rev?.id}`}
+                                    style={styles.reviewDesc}>
+                                    {rev?.body}
+                                </Text>
+                            ))}
+                        </View>,
+                    ];
+                }}
                 ListHeaderComponent={() => {
                     return (
                         <>
@@ -58,7 +83,7 @@ const Detail = () => {
                         </>
                     );
                 }}
-                data={movie?.cast}
+                data={casts}
                 renderItem={({item}: {item: string}) => {
                     return <Text style={styles.cast}>{item}</Text>;
                 }}
@@ -91,6 +116,10 @@ const styles = StyleSheet.create({
         height: 350,
         alignSelf: 'center',
     },
+    reviewDesc: {
+        fontSize: 19,
+    },
+    reviewContainer: {marginLeft: 25},
 });
 
 export default memo(Detail);

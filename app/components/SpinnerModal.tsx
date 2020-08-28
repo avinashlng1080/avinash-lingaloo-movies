@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, Modal, StyleSheet, View, Text} from 'react-native';
+import {ActivityIndicator, Modal, StyleSheet, Text, View} from 'react-native';
 
 import {useNetInfo} from '@react-native-community/netinfo';
 
@@ -26,7 +26,7 @@ const SpinnerModal = ({modalVisible}: ISpinnerModal) => {
 
     return (
         <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={false}
             visible={modalVisible}
             onRequestClose={() => {}}>

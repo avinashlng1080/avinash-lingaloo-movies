@@ -4,6 +4,7 @@ import Animated from 'react-native-reanimated';
 import FastImage from 'react-native-fast-image';
 
 import type MovieType from '@app/types/Movie';
+import {getProperData} from '@utils/helpers';
 
 interface PosterProps {
     movie: MovieType;
@@ -13,6 +14,8 @@ interface PosterProps {
 // const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
 
 const Poster = ({borderRadius, movie}: PosterProps) => {
+    const reviews = getProperData(movie?.reviews) || [];
+
     return (
         <>
             <Animated.View
@@ -27,7 +30,7 @@ const Poster = ({borderRadius, movie}: PosterProps) => {
             <View style={styles.content}>
                 <Text style={styles.name}>{movie.name}</Text>
                 <Text style={styles.reviews}>{`Reviews: ${
-                    movie.reviews?.length || 0
+                    reviews.length || 0
                 }`}</Text>
             </View>
         </>

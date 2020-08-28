@@ -1,6 +1,6 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {useValue} from 'react-native-redash';
 import axios from 'axios';
 import Movie from '@components/Movie';
@@ -10,20 +10,21 @@ import {MOVIE_POSTER} from '@utils/CONSTANTS';
 import List from '@components/List';
 import SpinnerModal from '@components/SpinnerModal';
 import MovieDetail from '@components/MovieDetail';
-import Toast from 'react-native-toast-message';
 
+import Realm from 'realm';
+import {MovieSchema, ReviewSchema} from '../realm/model/RealmModels';
 // TODO : react-navigation-shared-element as per William Candillon
 
 const Start = () => {
     const navigation = useNavigation();
     const [movies, setMovies] = useState<MovieType[]>([]);
-    const [fetching, setFetching] = useState<boolean>(true);
+    const [fetching, setFetching] = useState<boolean>(false);
     const interceptorId = useRef(rax.attach());
-
     const activeMovieId = useValue<number>(-1);
 
+    // Read all object stored in Realm and load them upfront
     useEffect(() => {
-        getMovies();
+        loadPersistedRealm();
     }, []);
 
     useFocusEffect(
@@ -37,24 +38,16 @@ const Start = () => {
         return navigation.navigate('Detail', {movie: movie});
     };
 
-    const getMovies = async () => {
+    const getMovies = React.useCallback(async () => {
         try {
             setFetching(true);
-            Toast.show({
-                type: 'info',
-                position: 'bottom',
-                text1: 'Fetching',
-                text2: 'Getting movies from server',
-                visibilityTime: 2000,
-                autoHide: true,
-            });
             console.log('attache', interceptorId);
             const movieResponse = await axios({
                 method: 'post',
                 url:
                     'https://us-central1-mattermost-764a8.cloudfunctions.net/generateMovies',
                 data: {
-                    movieCount: 130,
+                    movieCount: 45,
                     reviewsPerMovie: 4,
                 },
                 headers: {'Content-Type': 'application/json'},
@@ -81,27 +74,86 @@ const Start = () => {
                     // You can detect when a retry is happening, and figure out how many
                     // retry attempts have been made
                     onRetryAttempt: (err) => {
-                        // const cfg = rax.getConfig(err);
-                        console.log('Retry attempt <<<<<<<<<<<<<<');
+                        const cfg = rax.getConfig(err);
+                        console.log('Retry attempt <<<<<<<<<<<<<<', cfg);
                     },
                 },
             });
             const movie = movieResponse?.data?.movies;
-            setMovies(movie);
+            const mergedMovies = [...movie, ...movies];
+            const uniqueMovies = [...new Set(mergedMovies)];
+            setMovies(uniqueMovies);
             setFetching(false);
+            if (movie.length > 0) {
+                await writeToRealm(movie);
+            }
         } catch (e) {
             setFetching(false);
-            setMovies([]);
-            console.log('in error ', e);
+            console.log('Axios error ', e);
         }
+    }, []);
+
+    // Get movies on screen load
+    useEffect(() => {
+        const getMovieTimer = setTimeout(() => getMovies(), 800);
+        return () => {
+            clearTimeout(getMovieTimer);
+        };
+    }, [getMovies]);
+
+    const loadPersistedRealm = () => {
+        return Realm.open({
+            schema: [MovieSchema, ReviewSchema],
+        }).then((realm) => {
+            const persistedMovies = JSON.parse(
+                JSON.stringify(realm.objects('Movie')), // deep copy of the realm object
+            );
+
+            if (persistedMovies?.length > 0) {
+                console.log('here <<<<< ');
+                setMovies(persistedMovies);
+            }
+            realm.close();
+        });
     };
 
-    console.log('render <<<<<');
+    const writeToRealm = (movie: MovieType[]) => {
+        return Realm.open({
+            schema: [MovieSchema, ReviewSchema],
+        })
+            .then((realm) => {
+                realm.write(() => {
+                    movie.forEach((mov: MovieType) => {
+                        realm.create('Movie', {
+                            id: mov?.id ?? '',
+                            name: mov?.name ?? '',
+                            poster: mov?.poster ?? '',
+                            gender: mov?.gender ?? '',
+                            description: mov?.description ?? '',
+                            reviews: mov?.reviews
+                                ? JSON.stringify(mov?.reviews)
+                                : '',
+                            cast: mov?.cast ? JSON.stringify(mov?.cast) : '',
+                        });
+                    });
+                });
+
+                realm.close();
+            })
+            .catch((error) => {
+                console.log('realm error ', error);
+            });
+    };
 
     const renderMovieList = () => {
-        return (
+        return [
+            <SpinnerModal key="SpinnerModal" modalVisible={fetching} />,
             <List
+                key="MovieList"
+                bounces={true}
                 data={movies}
+                // refreshing={fetching}
+                // onRefresh={getMovies}
                 getItemLayout={(data: MovieType[], index: number) => {
                     return {
                         length: MOVIE_POSTER,
@@ -141,23 +193,19 @@ const Start = () => {
                         />
                     );
                 }}
-            />
-        );
+            />,
+        ];
     };
 
     return (
-        <View style={Styles.container}>
+        <>
             <StatusBar barStyle="dark-content" />
             <SafeAreaView>{renderMovieList()}</SafeAreaView>
-        </View>
+        </>
     );
 };
 
 const Styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'rgba(143,188,143, 0.2)',
-        flex: 1,
-    },
     centerHeaderTitle: {
         justifyContent: 'center',
         alignItems: 'center',
