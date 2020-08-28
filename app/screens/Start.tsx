@@ -1,11 +1,6 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
-import {
-    RefreshControl,
-    SafeAreaView,
-    StatusBar,
-    StyleSheet,
-} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {useValue} from 'react-native-redash';
 import axios from 'axios';
 import Movie from '@components/Movie';
@@ -25,19 +20,11 @@ const Start = () => {
     const [movies, setMovies] = useState<MovieType[]>([]);
     const [fetching, setFetching] = useState<boolean>(false);
     const interceptorId = useRef(rax.attach());
-
     const activeMovieId = useValue<number>(-1);
-
-    // FIXME : add setTimeout for write after you've got a response
 
     // Read all object stored in Realm and load them upfront
     useEffect(() => {
         loadPersistedRealm();
-    }, []);
-
-    // Get movies on screen load
-    useEffect(() => {
-        getMovies();
     }, []);
 
     useFocusEffect(
@@ -87,12 +74,13 @@ const Start = () => {
                     // You can detect when a retry is happening, and figure out how many
                     // retry attempts have been made
                     onRetryAttempt: (err) => {
-                        // const cfg = rax.getConfig(err);
-                        console.log('Retry attempt <<<<<<<<<<<<<<');
+                        const cfg = rax.getConfig(err);
+                        console.log('Retry attempt <<<<<<<<<<<<<<', cfg);
                     },
                 },
             });
             const movie = movieResponse?.data?.movies;
+            // Merge list ?
             setMovies(movie);
             setFetching(false);
             if (movie.length > 0) {
@@ -100,21 +88,28 @@ const Start = () => {
             }
         } catch (e) {
             setFetching(false);
-            setMovies([]);
-            console.log('in error ', e);
+            console.log('Axios error ', e);
         }
     }, []);
+
+    // Get movies on screen load
+    useEffect(() => {
+        const getMovieTimer = setTimeout(() => getMovies(), 800);
+        return () => {
+            clearTimeout(getMovieTimer);
+        };
+    }, [getMovies]);
 
     const loadPersistedRealm = () => {
         return Realm.open({
             schema: [MovieSchema, ReviewSchema],
         }).then((realm) => {
-            // FIXME :  this part is not clear
             const persistedMovies = JSON.parse(
                 JSON.stringify(realm.objects('Movie')), // deep copy of the realm object
             );
 
             if (persistedMovies?.length > 0) {
+                console.log('here <<<<< ');
                 setMovies(persistedMovies);
             }
             realm.close();
@@ -151,12 +146,13 @@ const Start = () => {
 
     const renderMovieList = () => {
         return [
-            <SpinnerModal modalVisible={fetching} />,
+            <SpinnerModal key="SpinnerModal" modalVisible={fetching} />,
             <List
+                key="MovieList"
                 bounces={true}
                 data={movies}
                 refreshing={fetching}
-                onRefresh={getMovies}
+                // onRefresh={getMovies}
                 getItemLayout={(data: MovieType[], index: number) => {
                     return {
                         length: MOVIE_POSTER,
