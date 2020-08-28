@@ -111,8 +111,7 @@ const Start = () => {
         };
     }, [getMovies]);
 
-    // If there's no internet at all
-    useEffect(() => {
+    const showNoConnectionToast = () => {
         if (!netInfo.isInternetReachable) {
             Toast.show({
                 type: 'error',
@@ -125,6 +124,17 @@ const Start = () => {
                 topOffset: 50,
             });
         }
+    };
+
+    // If there's no internet at all
+    useEffect(() => {
+        const noConnectionTimer = setTimeout(
+            () => showNoConnectionToast(),
+            1000,
+        );
+        return () => {
+            clearTimeout(noConnectionTimer);
+        };
     }, [netInfo]);
 
     const loadPersistedRealm = () => {
