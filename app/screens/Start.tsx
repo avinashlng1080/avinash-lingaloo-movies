@@ -113,7 +113,6 @@ const Start = () => {
 
     // If there's no internet at all
     useEffect(() => {
-        console.log(netInfo);
         if (!netInfo.isInternetReachable) {
             Toast.show({
                 type: 'error',
