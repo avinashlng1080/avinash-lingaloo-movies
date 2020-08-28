@@ -122,6 +122,7 @@ const Start = () => {
                     "We can't load the movies as your internet connectivity is currently not optimum",
                 visibilityTime: 5000,
                 topOffset: 50,
+                onHide: () => getMovies(),
             });
         }
     };
