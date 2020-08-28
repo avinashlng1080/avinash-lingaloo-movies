@@ -29,13 +29,10 @@ const Detail = () => {
     const reviews = getProperData(reviewData) || [];
     const casts = getProperData(castData) || [];
 
-    console.log({reviews, casts});
-
     return (
         <View style={styles.container}>
             <List
                 ListFooterComponent={() => {
-                    console.log('here ==> ', Array.isArray(reviews));
                     return [
                         <MovieDetail
                             key="ListFooter-MovieDetail"
@@ -44,7 +41,7 @@ const Detail = () => {
                         <View
                             key="ListFooter-View"
                             style={styles.reviewContainer}>
-                            {reviews.map((rev) => (
+                            {reviews.map((rev: {id: string; body: string}) => (
                                 <Text
                                     key={`${rev?.id}`}
                                     style={styles.reviewDesc}>
