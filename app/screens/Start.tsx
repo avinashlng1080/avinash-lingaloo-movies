@@ -152,8 +152,8 @@ const Start = () => {
                 key="MovieList"
                 bounces={true}
                 data={movies}
-                refreshing={fetching}
-                onRefresh={getMovies}
+                // refreshing={fetching}
+                // onRefresh={getMovies}
                 getItemLayout={(data: MovieType[], index: number) => {
                     return {
                         length: MOVIE_POSTER,
@@ -177,7 +177,6 @@ const Start = () => {
                         />
                     );
                 }}
-                extraData={movies}
                 renderItem={({
                     item,
                     index,
