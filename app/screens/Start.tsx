@@ -1,6 +1,6 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import {useValue} from 'react-native-redash';
 import axios from 'axios';
 import Movie from '@components/Movie';
@@ -10,6 +10,7 @@ import {MOVIE_POSTER} from '@utils/CONSTANTS';
 import List from '@components/List';
 import SpinnerModal from '@components/SpinnerModal';
 import MovieDetail from '@components/MovieDetail';
+import Toast from 'react-native-toast-message';
 
 // TODO : react-navigation-shared-element as per William Candillon
 
@@ -39,6 +40,14 @@ const Start = () => {
     const getMovies = async () => {
         try {
             setFetching(true);
+            Toast.show({
+                type: 'info',
+                position: 'bottom',
+                text1: 'Fetching',
+                text2: 'Getting movies from server',
+                visibilityTime: 2000,
+                autoHide: true,
+            });
             console.log('attache', interceptorId);
             const movieResponse = await axios({
                 method: 'post',
@@ -136,21 +145,19 @@ const Start = () => {
         );
     };
 
-    const renderSpinner = () => {
-        return <SpinnerModal modalVisible={fetching} />;
-    };
-
     return (
-        <>
+        <View style={Styles.container}>
             <StatusBar barStyle="dark-content" />
-            <SafeAreaView>
-                {fetching ? renderSpinner() : renderMovieList()}
-            </SafeAreaView>
-        </>
+            <SafeAreaView>{renderMovieList()}</SafeAreaView>
+        </View>
     );
 };
 
 const Styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'rgba(143,188,143, 0.2)',
+        flex: 1,
+    },
     centerHeaderTitle: {
         justifyContent: 'center',
         alignItems: 'center',
