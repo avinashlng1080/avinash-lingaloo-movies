@@ -5,6 +5,7 @@ import type MovieType from '@app/types/Movie';
 import FastImage from 'react-native-fast-image';
 import List from '@components/List';
 import MovieDetail from '@components/MovieDetail';
+import {getProperData} from '@utils/helpers';
 
 type DetailParamList = {
     Detail: {
@@ -22,25 +23,19 @@ const Detail = () => {
     if (movie?.name) {
         navigation.setOptions({title: movie?.name});
     }
+    const reviewData = movie?.reviews;
+    const castData = movie?.cast;
+
+    const reviews = getProperData(reviewData) || [];
+    const casts = getProperData(castData) || [];
+
+    console.log({reviews, casts});
 
     return (
         <View style={styles.container}>
             <List
                 ListFooterComponent={() => {
-                    const reviewData = movie?.reviews;
-
-                    console.log('here ==> ', Array.isArray(reviewData));
-                    console.log('here ==> ', reviewData);
-
-                    // if (!reviewData) {
-                    //     return null;
-                    // }
-
-                    const reviews =
-                        typeof reviewData === 'string'
-                            ? JSON.parse(reviewData)
-                            : reviewData;
-
+                    console.log('here ==> ', Array.isArray(reviews));
                     return [
                         <MovieDetail
                             key="ListFooter-MovieDetail"
@@ -49,7 +44,7 @@ const Detail = () => {
                         <View
                             key="ListFooter-View"
                             style={styles.reviewContainer}>
-                            {reviewData.map((rev) => (
+                            {reviews.map((rev) => (
                                 <Text
                                     key={`${rev?.id}`}
                                     style={styles.reviewDesc}>
@@ -91,7 +86,7 @@ const Detail = () => {
                         </>
                     );
                 }}
-                data={movie?.cast}
+                data={casts}
                 renderItem={({item}: {item: string}) => {
                     return <Text style={styles.cast}>{item}</Text>;
                 }}
