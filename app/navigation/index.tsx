@@ -24,18 +24,23 @@ const App = () => (
     <>
         <StatusBar barStyle="dark-content" />
         <NavigationContainer>
-            <Stack.Navigator
-                initialRouteName="Splash"
-                screenOptions={{
-                    headerShown: false,
-                    cardStyleInterpolator: forFade,
-                }}>
-                <Stack.Screen name="Splash" component={SplashScreen} />
+            <Stack.Navigator initialRouteName="Splash" headerMode="screen">
+                <Stack.Screen
+                    name="Splash"
+                    component={SplashScreen}
+                    options={() => ({
+                        headerShown: false,
+                        headerTintColor: 'rgba(0,0,0, 0.75)',
+                        headerStyle: {
+                            backgroundColor: 'rgba(143,188,143, 0.75)',
+                        },
+                    })}
+                />
                 <Stack.Screen
                     name="Start"
                     component={Start}
                     options={() => ({
-                        headerTitle: 'Movies',
+                        headerShown: false,
                     })}
                 />
                 <Stack.Screen
@@ -43,6 +48,11 @@ const App = () => (
                     component={Detail}
                     options={() => ({
                         headerShown: true,
+                        headerBackTitle: 'Movies',
+                        headerTintColor: 'rgba(0,0,0, 0.75)',
+                        headerStyle: {
+                            backgroundColor: 'rgba(143,188,143, 0.75)',
+                        },
                     })}
                 />
             </Stack.Navigator>
