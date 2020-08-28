@@ -1,7 +1,7 @@
 import type Review from './Review';
 
 export default interface Movie {
-    id?: string;
+    id: string;
     name: string;
     poster: string;
     gender: string;

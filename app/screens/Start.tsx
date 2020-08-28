@@ -1,6 +1,11 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {
+    RefreshControl,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet,
+} from 'react-native';
 import {useValue} from 'react-native-redash';
 import axios from 'axios';
 import Movie from '@components/Movie';
@@ -32,7 +37,7 @@ const Start = () => {
 
     // Get movies on screen load
     useEffect(() => {
-        // getMovies();
+        getMovies();
     }, []);
 
     useFocusEffect(
@@ -46,7 +51,7 @@ const Start = () => {
         return navigation.navigate('Detail', {movie: movie});
     };
 
-    const getMovies = async () => {
+    const getMovies = React.useCallback(async () => {
         try {
             setFetching(true);
             console.log('attache', interceptorId);
@@ -91,14 +96,14 @@ const Start = () => {
             setMovies(movie);
             setFetching(false);
             if (movie.length > 0) {
-                writeToRealm(movie);
+                await writeToRealm(movie);
             }
         } catch (e) {
             setFetching(false);
             setMovies([]);
             console.log('in error ', e);
         }
-    };
+    }, []);
 
     const loadPersistedRealm = () => {
         return Realm.open({
@@ -145,9 +150,13 @@ const Start = () => {
     };
 
     const renderMovieList = () => {
-        return (
+        return [
+            <SpinnerModal modalVisible={fetching} />,
             <List
+                bounces={true}
                 data={movies}
+                refreshing={fetching}
+                onRefresh={getMovies}
                 getItemLayout={(data: MovieType[], index: number) => {
                     return {
                         length: MOVIE_POSTER,
@@ -171,6 +180,7 @@ const Start = () => {
                         />
                     );
                 }}
+                extraData={movies}
                 renderItem={({
                     item,
                     index,
@@ -187,20 +197,14 @@ const Start = () => {
                         />
                     );
                 }}
-            />
-        );
-    };
-
-    const renderSpinner = () => {
-        return <SpinnerModal modalVisible={fetching} />;
+            />,
+        ];
     };
 
     return (
         <>
             <StatusBar barStyle="dark-content" />
-            <SafeAreaView>
-                {fetching ? renderSpinner() : renderMovieList()}
-            </SafeAreaView>
+            <SafeAreaView>{renderMovieList()}</SafeAreaView>
         </>
     );
 };

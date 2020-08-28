@@ -1,8 +1,8 @@
 export const MovieSchema = {
     name: 'Movie',
-    primaryKey: 'name',
+    primaryKey: 'id',
     properties: {
-        id: 'string?',
+        id: 'string',
         name: 'string',
         poster: 'string',
         gender: 'string',

@@ -26,7 +26,7 @@ const SpinnerModal = ({modalVisible}: ISpinnerModal) => {
 
     return (
         <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={false}
             visible={modalVisible}
             onRequestClose={() => {}}>
